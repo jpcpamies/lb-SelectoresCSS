@@ -1,0 +1,29 @@
+// Layout
+
+// Estilo general
+
+body {
+	background: @basecolor;
+	font-family: @mainfont;
+	font-size: 16px;
+	color: @textoprincipal;
+}
+::selection {
+	background: orange;
+	color: white;
+}
+// Estilo cajas
+@import "estilo-caja.less";
+
+// Break points
+@media screen and (min-width: 992px) {
+	@import "bp3.less";
+}
+
+@media screen and (max-width: 992px) {
+	@import "bp2.less";
+}
+
+@media screen and (max-width: 480px) {
+	@import "bp1.less";
+}

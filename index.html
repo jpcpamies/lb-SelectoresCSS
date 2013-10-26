@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="es_ES" />
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Selectores CSS3: De principiante a experto.</title>
+
+    <link rel="stylesheet" href="css/normalize.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Quicksand:300|PT+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link href="css/prism.css" rel="stylesheet" />
+
+    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="js/vendor/jquery-1.10.1.min.js"></script>
+	<script src="js/vendor/jquery.mobilemenu.js"></script>
+	<script>
+		$(function(){
+			$('.lista').mobileMenu({
+				combine:false,
+				switchWidth :992,
+				groupPageText : "",
+				topOptionText: '',
+				prependTo:"#menu"
+
+			});
+		})
+	</script>
+</head>
+<body>
+<header id='header'>
+    <figure id="logotipo">
+        <img id='png'src="img/logo.png" alt="logo" height='180px' width='180px' />
+    </figure>    
+    <figure id="logotipo2">
+        <img id='png'src="img/logo2.png" alt="logo" height='180px' width='180px' />
+    </figure>
+    <h1>Seletores</h1>
+</header>
+<nav id="menu">
+    <ul class="lista">
+        <li><a href="#uno">1.* Reset</a></li>
+        <li><a href="#dos">2. X:visited and X:link</a></li>    
+        <li><a href="#tres">3. X + Y</a></li>
+        <li><a href="#cuatro">4. X > Y</a></li>
+        <li><a href="#cinco">5. X ~ Y</a></li>
+        <li><a href="#seis">6. X[title]</a></li>
+        <li><a href="#siete">7. X[href="foo"]</a></li>
+        <li><a href="#ocho">8. X[href*="nettuts"]</a></li>
+        <li><a href="#nueve">9. X[href^="http"]</a></li>
+        <li><a href="#diez">10. X[data-*="foo"]</a></li>
+        <li><a href="#once">11. X:checked</a></li>
+        <li><a href="#doce">12. X:after</a></li>
+        <li><a href="#trece">13. X:not(selector)</a></li>
+        <li><a href="#catorce">14. X::pseudoElement</a></li>
+        <li><a href="#quince">15. X:nth-child(n)</a></li>
+        <li><a href="#dieciseis">16. X:nth-last-child(n)</a></li>
+        <li><a href="#diecisiete">17. X:first-child</a></li>
+        <li><a href="#dieciocho">18. X:last-child</a></li>
+        <li><a href="#diecinueve">19. Selective hover</a></li>
+        <li><a href="#veinte">20. Advanced hover</a></li>
+        <li><a href="#veintiuno">21. Hover into a hover</a></li>
+    </ul>
+</nav>
+<section id="home">
+    <div class="cont_down">
+        <article id='uno'>
+            <div class="info">
+                <h3>1. * Reset</h3>
+                <p>Many developers will use this trick to zero out the margins and padding. While this is certainly fine for quick tests, I’d advise you to never use this in production code. It adds too much weight on the browser, and is unnecessary.
+The * can also be used with child selectors. This will target every single element that is a child of the #container div. Again, try not to use this technique very much, if ever.</p>
+            </div>
+        </article>
+
+        <article id='dos'>
+            <div class="info">
+                <h3>2. X:visited and X:link</h3>
+                <p>We use the :link pseudo-class to target all anchors tags which have yet to be clicked on.
+Alternatively, we also have the :visited pseudo class which have been clicked on, or visited.</p>
+            </div>
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+a:link { color: red; }  
+a:visted { color: purple; } 
+</code>
+                    </pre>
+                </div>
+            </div>
+        </article>
+        <article id='tres'>
+            <div class="info">
+                <h3>3. X + Y</h3>
+                <p>This is referred to as an adjacent selector. It will select only the element that is immediately preceded by the former element. In this case, only the first paragraph after each ul will have red text.</p>
+            </div>
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+ul + p {  
+    color: red;  
+}   
+</code>
+                    </pre>
+                </div>
+            </div>
+        </article>
+
+        <article id='cuatro'>
+            <div class="info">
+                <h3>4. X > Y</h3>
+                <p>The difference between the standard X Y and X > Y is that the latter will only select direct children. For example, consider the following markup.
+                A selector of #container > ul will only target the uls which are direct children of the div with an idof container. It will not target, for instance, the ul that is a child of the first li.</p>
+            </div>
+<!--             <div class="html">
+                <h3 class="codigo">HTML</h3>
+                <div>
+                    <pre>
+<code class="language-html">
+    <div id="container">  
+       <ul>  
+          <li> List Item  
+            <ul>  
+               <li> Child </li>  
+            </ul>  
+          </li>  
+          <li> List Item </li>  
+          <li> List Item </li>  
+          <li> List Item </li>  
+       </ul>  
+    </div>
+</code>
+                    </pre>
+                </div>
+            </div> -->
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+div#container > ul {  
+    border: 1px solid black;  
+} 
+</code>
+                    </pre>
+                </div>
+            </div>
+        </article>
+
+        <article id='cinco'>
+            <div class="info">
+                <h3>5. X ~ Y</h3>
+                <p>This sibling combinator is similar to X + Y, however, it’s less strict. While an adjacent selector (ul + p) will only select the first element that is immediately preceded by the former selector, this one is more generalized. It will select, referring to our example above, any p elements, as long as they follow a ul.</p>
+            </div>
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+ul ~ p {  
+    color: red;  
+} 
+</code>
+                    </pre>
+                </div>
+            </div>
+        </article>
+
+        <article id='seis'>
+            <div class="info">
+                <h3>6. X[title]</h3>
+                <p>Referred to as an attributes selector, in our example above, this will only select the anchor tags that have atitle attribute. Anchor tags which do not will not receive this particular styling. But, what if you need to be more specific? Well...</p>
+            </div>
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+a[title] {  
+    color: green;  
+}  
+</code>
+                    </pre>
+                </div>
+            </div>
+        </article>
+
+        <article id='siete'>
+            <div class="info">
+                <h3>7. X[href="foo"]</h3>
+                <p>The snippet above will style all anchor tags which link to http://net.tutsplus.com; they’ll receive our branded green color. All other anchor tags will remain unaffected.</p>
+                <p>This works well, though, it’s a bit rigid. What if the link does indeed direct to Nettuts+, but, maybe, the path is nettuts.com rather than the full url? In those cases we can use a bit of the regular expressions syntax.</p>
+            </div>
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+a[href="http://net.tutsplus.com"] {  
+    color: #1f6053; /* nettuts green */  
+}
+</code>
+                    </pre>
+                </div>
+            </div>
+            <div class="tip">
+                <h3>TIP</h3>
+                <p>Note that we’re wrapping the value in quotes. Remember to also do this when using a JavaScript CSS selector engine. When possible, always use CSS3 selectors over unofficial methods.</p>
+            </div>
+        </article>
+
+        <article id='ocho'>
+            <div class="info">
+                <h3>8. X[href*="nettuts"]</h3>
+                <p>The star designates that the proceeding value must appear somewherein the attribute’s value. That way, this covers nettuts.com, net.tutsplus.com, and even tutsplus.com.</p>
+            </div>
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+a[href*="tuts"] {  
+    color: #1f6053; /* nettuts green */  
+}
+</code>
+                    </pre>
+                </div>
+            </div>
+        </article>
+
+        <article id='nueve'>
+            <div class="info">
+                <h3>9. X[href^="http"]</h3>
+                <p>If we want to target all anchor tags that have a href which begins with http, we could use a selector similar to the snippet shown above.</p>
+            </div>
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+a[href^="http"] {  
+    background: url(path/to/external/icon.png) no-repeat;  
+    padding-left: 10px;  
+}
+</code>
+                    </pre>
+                </div>
+            </div>
+            <div class="tip">
+                <h3>TIP</h3>
+                <p>Notice that we’re not searching forhttp://; that’s unnecessary, and doesn’t account for the urls that begin with https://.</p>
+            </div>
+        </article>
+
+        <article id='diez'>
+            <div class="info">
+                <h3>10. X[data-*="foo"]</h3>
+                <p>Refer back to number eight; how do we compensate for all of the various image types: png, jpeg,jpg,gif?
+A possible solution is to use custom attributes. What if we added our own data-filetype attribute to each anchor that links to an image? Then, with that hook in place, we can use a standard attributes selector to target only those anchors.</p>
+            </div>
+<!--             <div class="html">
+                <h3 class="codigo">HTML</h3>
+                <div>
+                    <pre>
+<code class="language-html">
+          <a href="path/to/image.jpg" data-filetype="image"> Image Link </a> 
+</code>
+                    </pre>
+                </div>
+            </div> -->
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+a[data-filetype="image"] {  
+    color: red;  
+}
+</code>
+                    </pre>
+                </div>
+            </div>
+        </article>
+
+        <article id='once'>
+            <div class="info">
+                <h3>11. X:checked</h3>
+                <p>This pseudo class will only target a user interface element that has been checked - like a radio button, or checkbox. It's as simple as that.</p>
+            </div>
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+input[type=radio]:checked {  
+    border: 1px solid black;  
+}
+</code>
+                    </pre>
+                </div>
+            </div>
+        </article>
+
+        <article id='doce'>
+            <div class="info">
+                <h3>12. X:after</h3>
+                <p>The before and after pseudo classes kick butt. They simply generate content around the selected element.
+                Many were first introduced to these classes when they encountered the clear-fix hack.
+This hack uses the :after pseudo class to append a space after the element, and then clear it. It's an excellent trick to have in your tool bag, particularly in the cases when the overflow: hidden; method isn't possible.</p>
+            </div>
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+.clearfix:after {  
+    content: "";  
+    display: block;  
+    clear: both;  
+    visibility: hidden;  
+    font-size: 0;  
+    height: 0;  
+}  
+.clearfix {   
+    *display: inline-block;   
+    _height: 1%;  
+} 
+</code>
+                    </pre>
+                </div>
+            </div>
+            <div class="tip">
+                <h3>TIP</h3>
+                <p>According to the CSS3 Selectors speci"cation, you should
+technically use the pseudo element syntax of two colons ::. However, to remain compatible, the user-agent will accept a single colon usage as well. In fact, at this point, it's smarter to use the single-colon version in your projects.</p>
+            </div>
+        </article>
+
+        <article id='trece'>
+            <div class="info">
+                <h3>13. X:not(selector)</h3>
+                <p>The negation pseudo class is particularly helpful. Let's say I want to select all divs, except for the one which has an id of container. Or, if I wanted to select every single element (not advised) except for paragraph tags, we could do:</p>
+            </div>
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+div:not(#container) {  
+    color: blue;  
+} 
+</code>
+                    </pre>
+                </div>
+            </div>
+                <div class="codigo2">
+                    <pre>
+<code class="language-css"> 
+*:not(p) {  
+    color: green;  
+}
+</code>
+                    </pre>
+                </div>
+            </div>
+        </article>
+
+        <article id='catorce'>
+            <div class="info">
+                <h3>14. X::pseudoElement</h3>
+                <p>We can use pseudo elements (designated by ::) to style fragments of an element, such as the first line, or the first letter. Keep in mind that these must be applied to block level elements in order to take effect.
+<bold>Target the First Letter of a Paragraph</bold>
+This snippet is an abstraction that will find all paragraphs on the page, and then sub-target only the first letter of that element.
+This is most often used to create newspaper-like styling for the first- letter of an article.
+<bold>Target the First Line of a Paragraph</bold>
+Similarly, the ::first-line pseudo element will, as expected, style the first line of the element only.</p>
+            </div>
+            <div class="tip">
+                <h3>TIP</h3>
+                <p>A pseudo-element is composed of two colons: ::</p>
+            </div>
+        </article>
+
+        <article id='quince'>
+            <div class="info">
+                <h3>15. X:nth-child(n)</h3>
+                <p>Remember the days when we had no way to target specific elements in a stack? The nth-child pseudo class solves that!
+Please note that nth-child accepts an integer as a parameter, however, this is not zero-based. If you wish to target the second list item, use li:nth-child(2).
+We can even use this to select a variable set of children. For example, we could do li:nth-child(4n)to select every fourth list item.</p>
+            </div>
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+li:nth-child(3) {  
+    color: red;  
+}
+</code>
+                    </pre>
+                </div>
+            </div>
+        </article>
+
+        <article id='dieciseis'>
+            <div class="info">
+                <h3>16. X:nth-last-child(n)</h3>
+                <p>What if you had a huge list of items in a ul, and only needed to access, say, the third to the last item? Rather than doing li:nth- child(397), you could instead use the nth-last-child pseudo class.</p>
+            </div>
+            <div class="css">
+                <h3 class="codigo">CSS</h3>
+                <div>
+                    <pre>
+<code class="language-css">
+li:nth-last-child(2) {  
+    color: red;  
+}  
+</code>
+                    </pre>
+                </div>
+            </div>
+        </article>
+
+        <article id='diecisiete'>
+            <div class="info">
+                <h3>17. X:first-child</h3>
+                <p>This structural pseudo class allows us to target only the first child of the element's parent. You'll often use this to remove borders from the first and last list items.
+                For example, let's say you have a list of rows, and each one has a border-top and a border-bottom. Well, with that arrangement, the first and last item in that set will look a bit odd.
+Many designers apply classes of first and last to compensate for this. Instead, you can use these pseudo classes.</p>
+            </div>
+        </article>
+
+        <article id='dieciocho'>
+            <div class="info">
+                <h3>18. X:last-child</h3>
+                <p>The opposite of first-child, last-child will target the last item of the element's parent.</p>
+            </div>
+        </article>
+
+        <article id='diecinoueve'>
+            <div class="info">
+                <h3>19. Selective hover</h3>
+                <p>If I'm hovering over a list item that is in my sub1,
+within my nav menu, then the sub2 is a decendent it's going to be display block</p>
+            </div>
+        </article>
+
+        <article id='veinte'>
+            <div class="info">
+                <h3>20. Advanced hover</h3>
+                <p>Aquí va el texto explicativo.</p>
+            </div>
+        </article>
+
+        <article id='veintiuno'>
+            <div class="info">
+                <h3>21. Hover into a hover</h3>
+                <p>when I'm overing a a item at the same time that I'm hovering a li item change de background</p>
+            </div>
+        </article>
+    </div>
+</section>
+</div>
+
+<!-- Script Prims -->
+<script src="js/vendor/prism.js"></script>
+
+<!-- Google Analytics -->
+<script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src='//www.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>   
+</body>
+</html>
+
+</body>
+</html>
